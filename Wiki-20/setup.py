@@ -49,6 +49,7 @@ setup(
         "repoze.who==1.0.19",
         "tgext.admin >= 0.3.9",
         "tw.forms",
+        "docutils",
         ],
     ##{E:setupdeps}
     setup_requires=["PasteScript >= 1.7"],
