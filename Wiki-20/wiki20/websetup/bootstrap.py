@@ -44,6 +44,10 @@ def bootstrap(command, conf, vars):
         u1.password = u'editpass'
     
         model.DBSession.add(u1)
+        
+        page = model.Page("FrontPage", "initial data")
+        model.DBSession.add(page)
+        
         model.DBSession.flush()
         transaction.commit()
     except IntegrityError:
