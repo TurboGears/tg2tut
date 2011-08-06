@@ -32,6 +32,7 @@ setup(
     author='',
     author_email='',
     #url='',
+    ##{B:setupdeps}
     install_requires=[
         "TurboGears2 >= 2.1.1",
         "Genshi",
@@ -49,6 +50,7 @@ setup(
         "tgext.admin >= 0.3.9",
         "tw.forms",
         ],
+    ##{E:setupdeps}
     setup_requires=["PasteScript >= 1.7"],
     paster_plugins=['PasteScript', 'Pylons', 'TurboGears2', 'tg.devtools'],
     packages=find_packages(exclude=['ez_setup']),
