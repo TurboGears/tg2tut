@@ -73,6 +73,11 @@ class RootController(BaseController):
         page.data = data
         redirect("/" + pagename)
 
+    @expose("wiki20.templates.pagelist")
+    def pagelist(self):
+        pages = [page.pagename for page in DBSession.query(Page).order_by(Page.pagename)]
+        return dict(pages=pages)
+
     @expose('wiki20.templates.about')
     def about(self):
         """Handle the 'about' page."""
