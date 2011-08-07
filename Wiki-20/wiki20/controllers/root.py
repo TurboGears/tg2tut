@@ -15,6 +15,10 @@ from wiki20.controllers.secure import SecureController
 from wiki20.controllers.error import ErrorController
 
 from wiki20.model.page import Page
+import re
+from docutils.core import publish_parts
+
+wikiwords = re.compile(r"\b([A-Z]\w+[A-Z]+\w+)")
 
 __all__ = ['RootController']
 
@@ -43,7 +47,10 @@ class RootController(BaseController):
     def _default(self, pagename="FrontPage"):
         """Handle the front-page."""
         page = DBSession.query(Page).filter_by(pagename=pagename).one()
-        return dict(wikipage=page)
+        content = publish_parts(page.data, writer_name="html")["html_body"]
+        root = url('/')
+        content = wikiwords.sub(r'<a href="%s\1">\1</a>' % root, content)
+        return dict(content=content, wikipage=page)
 
     @expose(template="wiki20.templates.edit")
     def edit(self, pagename):
