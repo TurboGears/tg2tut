@@ -14,6 +14,8 @@ from wiki20.controllers.secure import SecureController
 
 from wiki20.controllers.error import ErrorController
 
+from wiki20.model.page import Page
+
 __all__ = ['RootController']
 
 
@@ -37,10 +39,11 @@ class RootController(BaseController):
 
     error = ErrorController()
 
-    @expose('wiki20.templates.index')
-    def index(self):
+    @expose('wiki20.templates.page')
+    def index(self, pagename="FrontPage"):
         """Handle the front-page."""
-        return dict(page='index')
+        page = DBSession.query(Page).filter_by(pagename=pagename).one()
+        return dict(wikipage=page)
 
     @expose('wiki20.templates.about')
     def about(self):
