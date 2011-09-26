@@ -20,7 +20,7 @@ except ImportError:
              'Please install it. Example: easy_install hashlib')
 
 from sqlalchemy import Table, ForeignKey, Column
-from sqlalchemy.types import Unicode, Integer, DateTime, VarBinary
+from sqlalchemy.types import Unicode, Integer, DateTime, VARBINARY
 from sqlalchemy.orm import relation, synonym
 
 from hiringpond.model import DeclarativeBase, metadata, DBSession
