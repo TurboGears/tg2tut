@@ -20,7 +20,7 @@ except ImportError:
              'Please install it. Example: easy_install hashlib')
 
 from sqlalchemy import Table, ForeignKey, Column
-from sqlalchemy.types import Unicode, Integer, DateTime
+from sqlalchemy.types import Unicode, Integer, DateTime, VarBinary
 from sqlalchemy.orm import relation, synonym
 
 from hiringpond.model import DeclarativeBase, metadata, DBSession
@@ -98,24 +98,46 @@ class User(DeclarativeBase):
     This is the user definition used by :mod:`repoze.who`, which requires at
     least the ``user_name`` column.
 
+    In addition, we specify all the local user information that we
+    will be storing.
+
     """
     __tablename__ = 'tg_user'
 
-    #{ Columns
+    ##{B:Columns}
 
     user_id = Column(Integer, autoincrement=True, primary_key=True)
 
     user_name = Column(Unicode(16), unique=True, nullable=False)
 
-    email_address = Column(Unicode(255), unique=True, nullable=False,
-                           info={'rum': {'field':'Email'}})
+    email_address = Column(Unicode(1024), unique=True, nullable=False)
 
     display_name = Column(Unicode(255))
+
+    streetaddress = Column(Unicode(255))
+
+    city = Column(Unicode(255))
+
+    state_province = Column(Unicode(255))
+
+    postal_code = Column(Unicode(64))
+
+    phones = Column(Unicode(1024))
+
+    logo = Column(VARBINARY(1024*256))
+
+    callingcard = Column(VARBINARY(1024*256))
+
+    photo = Column(VARBINARY(1024*256))
+
+    external_links = Column(Unicode(1024*256))
 
     _password = Column('password', Unicode(128),
                        info={'rum': {'field':'Password'}})
 
     created = Column(DateTime, default=datetime.now)
+
+    ##{E:Columns}
 
     #{ Special methods
 
