@@ -7,7 +7,7 @@ from sqlalchemy import Table, ForeignKey, Column
 from sqlalchemy.types import Integer, Unicode, DATE, Boolean
 from sqlalchemy.orm import relation, backref, relationship
 
-from hiringpond.model import DeclarativeBase, metadata, DBSession, User
+from hiringpond.model import DeclarativeBase, metadata, DBSession
 
 
 class JobHistory(DeclarativeBase):
