@@ -60,3 +60,6 @@ def init_model(engine):
 
 # Import your model modules here.
 from hiringpond.model.auth import User, Group, Permission
+from hiringpond.model.skills import SkillGroups, SpecificSkills
+from hiringpond.model.jobs import JobHistory, JobPoints
+from hiringpond.model.projects import ProjectHistory, ProjectPoints

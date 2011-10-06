@@ -21,7 +21,7 @@ except ImportError:
 
 from sqlalchemy import Table, ForeignKey, Column
 from sqlalchemy.types import Unicode, Integer, DateTime, VARBINARY
-from sqlalchemy.orm import relation, synonym
+from sqlalchemy.orm import relation, synonym, relationship
 
 from hiringpond.model import DeclarativeBase, metadata, DBSession
 
@@ -132,10 +132,16 @@ class User(DeclarativeBase):
 
     external_links = Column(Unicode(1024*256))
 
+    default_summary = Column(Unicode(8192))
+
     _password = Column('password', Unicode(128),
                        info={'rum': {'field':'Password'}})
 
     created = Column(DateTime, default=datetime.now)
+
+    jobs = relationship("JobHistory", backref="user")
+    skillgroups = relationship("SkillGroups", backref="user")
+    projects = relationship("ProjectHistory", backref="user")
 
     ##{E:Columns}
 
