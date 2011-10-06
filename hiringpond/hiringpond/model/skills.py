@@ -4,7 +4,7 @@
 from sqlalchemy import *
 from sqlalchemy.orm import mapper, relation
 from sqlalchemy import Table, ForeignKey, Column
-from sqlalchemy.types import Integer, Unicode, DATE
+from sqlalchemy.types import Integer, Unicode, DATE, Boolean
 from sqlalchemy.orm import relation, backref, relationship
 
 from hiringpond.model import DeclarativeBase, metadata, DBSession
@@ -20,6 +20,7 @@ class SkillGroups(DeclarativeBase):
     order = Column(Integer)    
     name = Column(Unicode(64))
     tags = Column(Unicode(1024))
+    hidden = Column(Boolean())
     
     userid = Column(Integer, ForeignKey('tg_user.user_id'))
     skills = relationship("SpecificSkills", backref="skillgroups")
@@ -39,6 +40,7 @@ class SpecificSkills(DeclarativeBase):
     last_used = Column(DATE())
     proficiency = Column(Unicode(10))
     tags = Column(Unicode(1024))
+    hidden = Column(Boolean())
     
     skillgroupid = Column(Integer, ForeignKey('skill_groups.id'))
     

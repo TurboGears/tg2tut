@@ -4,7 +4,7 @@
 from sqlalchemy import *
 from sqlalchemy.orm import mapper, relation
 from sqlalchemy import Table, ForeignKey, Column
-from sqlalchemy.types import Integer, Unicode, DATE
+from sqlalchemy.types import Integer, Unicode, DATE, Boolean
 from sqlalchemy.orm import relation, backref, relationship
 
 from hiringpond.model import DeclarativeBase, metadata, DBSession, User
@@ -26,6 +26,7 @@ class JobHistory(DeclarativeBase):
     end_date = Column(DATE())
     job_summary = Column(Unicode(4096))
     tags = Column(Unicode(1024))
+    hidden = Column(Boolean())
     
     userid = Column(Integer, ForeignKey('tg_user.user_id'))
     job_bullets = relationship("JobPoints", backref="job")
@@ -43,6 +44,7 @@ class JobPoints(DeclarativeBase):
     order = Column(Integer)    
     bullet_text = Column(Unicode(1024))
     tags = Column(Unicode(1024))
+    hidden = Column(Boolean())
     
     jobid = Column(Integer, ForeignKey('job_history.id'))
     
