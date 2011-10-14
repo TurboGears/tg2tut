@@ -20,7 +20,7 @@ except ImportError:
              'Please install it. Example: easy_install hashlib')
 
 from sqlalchemy import Table, ForeignKey, Column
-from sqlalchemy.types import Unicode, Integer, DateTime, VARBINARY
+from sqlalchemy.types import Unicode, Integer, DateTime, LargeBinary
 from sqlalchemy.orm import relation, synonym, relationship
 
 from hiringpond.model import DeclarativeBase, metadata, DBSession
@@ -120,15 +120,17 @@ class User(DeclarativeBase):
 
     state_province = Column(Unicode(255))
 
-    postal_code = Column(Unicode(64))
+    postal_code = Column(Unicode(12))
 
-    phones = Column(Unicode(1024))
+    country = Column(Unicode(32))
 
-    logo = Column(VARBINARY(1024*256))
+    phones = Column(Unicode(1024)) # JSON Encoded
 
-    callingcard = Column(VARBINARY(1024*256))
+    logo = Column(LargeBinary(1024*256))
 
-    photo = Column(VARBINARY(1024*256))
+    callingcard = Column(LargeBinary(1024*256))
+
+    photo = Column(LargeBinary(1024*256))
 
     external_links = Column(Unicode(1024*256))
 

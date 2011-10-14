@@ -2,3 +2,4 @@ recursive-include hiringpond/public *
 include hiringpond/public/favicon.ico
 recursive-include hiringpond/i18n *
 recursive-include hiringpond/templates *
+recursive-include hiringpond/websetup *
