@@ -35,6 +35,9 @@ def bootstrap(command, conf, vars):
         u.external_links = '{"wikipedia": "http://en.wikipedia.org/wiki/Wile_E._Coyote_and_Road_Runner"}'
         u.default_summary = u"I have held a wide variety of jobs over the past several decades, ranging from tunnel painter to inventor to product tester. I have a knack for finding out ways in which things will break, bringing harm to their users, and would be happy to help any company avoid the liability from such mishaps. Especially if that company's products can help me catch the Road RUnner finally."
 
+        u.education.append(model.Education(education="Desert Springs University", date_completed=date(1940, 12, 20)))
+        u.awards.append(model.Award(award="Medal of Valor for Courage in the face of adversity", date_awarded=date(1950, 1, 23)))
+        
         j1 = model.JobHistory()
         j1.order = 1
         j1.company_name = u'Self-Employed'

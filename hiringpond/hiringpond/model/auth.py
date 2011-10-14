@@ -144,6 +144,8 @@ class User(DeclarativeBase):
     jobs = relationship("JobHistory", backref="user")
     skillgroups = relationship("SkillGroups", backref="user")
     projects = relationship("ProjectHistory", backref="user")
+    education = relationship("Education", backref="user")
+    awards = relationship("Award", backref="user")
 
     ##{E:Columns}
 
