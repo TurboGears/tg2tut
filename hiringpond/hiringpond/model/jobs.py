@@ -29,7 +29,7 @@ class JobHistory(DeclarativeBase):
     hidden = Column(Boolean())
     
     userid = Column(Integer, ForeignKey('tg_user.user_id'))
-    job_bullets = relationship("JobPoints", backref="job")
+    job_bullets = relationship("JobPoints", backref="job", order_by="JobPoints.order")
     projects = relationship("ProjectHistory", backref="job")
     
     ##{E:Columns}

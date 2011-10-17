@@ -23,7 +23,7 @@ class SkillGroups(DeclarativeBase):
     hidden = Column(Boolean())
     
     userid = Column(Integer, ForeignKey('tg_user.user_id'))
-    skills = relationship("SpecificSkills", backref="skillgroups")
+    skills = relationship("SpecificSkills", backref="skillgroups", order_by="SpecificSkills.order")
     
     ##{E:Columns}
 

@@ -6,11 +6,180 @@
 
   <xi:include href="master.html" />
 
-<head>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" py:if="False"/>
-  <title></title>
-</head>
-
-<body>
-</body>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" py:if="False"/>
+    <title>Hiring Pond: Resume for ${user.display_name}</title>
+  </head>
+  <body>
+    <div id="content">
+      <a name="top"></a>
+      <div id="mainphoto">
+	<py:choose test="">
+	  <py:when test="user.photo is not None"><img src="${tg.url('/photo', uid=user.user_id)}" alt="${user.display_name} photo"/></py:when>
+	  <py:when test="user.photo is None"><!-- generic photo --></py:when>
+	</py:choose>
+      </div>
+      <div id="logo">
+	<py:choose test="">
+	  <py:when test="user.logo is not None"><img src="${tg.url('/logo', uid=user.user_id)}" alt="${user.display_name} Logo"/></py:when>
+	  <py:when test="user.logo is None"><!-- todo: generic logo --></py:when>
+	</py:choose>
+      </div>
+      <div id="contactinfo">
+	<p>${user.display_name}
+	  <py:if test="user.streetaddress"><br/>${user.streetaddress}</py:if>
+	  <py:if test="user.city or user.state_province or user.postal_code"><br/></py:if>
+	    <py:if test="user.city">${user.city}, </py:if>
+	    <py:if test="user.state_province">${user.state_province} </py:if>
+	    <py:if test="user.postal_code">${user.postal_code}</py:if>
+	  <py:if test="user.country"><br/>${user.country}</py:if>
+	  <py:if test="user.email_address"><br/><span class="mailme">${user.email_address.replace('.', ' dot ').replace('@', ' at ')}</span></py:if>
+	  <py:if test="user.phones"><br/>${user.phones_to_string()}</py:if>
+	</p>
+      </div>
+      <div id="searchbox">
+	<p>Search for<br/>
+	  <input type="text" name="searchvalue" maxlength="20"/><br/>
+	  <input type="submit" value="Search" />
+	  <input type="reset" value="Collapse All"/></p>
+      </div>
+      <br/>
+      <div id="jobhistory">
+	<ul class="jd_menu jd_menu_slate">
+	  <li>Job History
+	    <ul>
+	      <li py:for="jobid in range(len(user.jobs))"><a href="#job_${jobid}">${user.jobs[jobid].company_name}</a></li>
+	    </ul>
+	  </li>
+	  <li>Specific Skills
+	    <ul>
+	      <li py:for="skillid in range(len(user.skillgroups))"><a href="#skill_${skillid}">${user.skillgroups[skillid].name}</a></li>
+	      <li><a href="#education">Education</a></li>
+	      <li><a href="#awards">Awards</a></li>
+	    </ul>
+	  </li>
+	  <li>Project History
+	    <ul>
+	      <li py:for="projectid in range(len(user.projects))"><a href="#project_${projectid}">${user.projects[projectid].name}</a></li>
+	    </ul>
+	  </li>
+	  <li>Downloadable Resumes
+	    <ul>
+	      <li></li>
+	    </ul>
+	  </li>
+	  <li>Downloadable Contact Info</li>
+	</ul>
+      </div>
+      <div id="maincontentwrapper">
+	<div id="maincontent">
+	  <py:if test="user.default_summary">
+	    <div id="summary">
+	      <h1 class="sectiontitle">Summary</h1>
+	      ${user.default_summary}
+	    </div>
+	  </py:if>
+	  <h1 class="sectiontitle">Job History</h1>
+	  <dl id="jobhistorybody">
+	    <py:for each="jobid in range(len(user.jobs))">
+	      <dt><a name="job_${jobid}"><span class="jobname">${user.jobs[jobid].company_name}</span><span class="jobsite">${user.jobs[jobid].job_city}, ${user.jobs[jobid].job_state}</span><span class="jobtitle">${user.jobs[jobid].job_title}</span><span class="dates">${user.jobs[jobid].start_date.year}-<py:choose test=""><py:when test="user.jobs[jobid].end_date">${user.jobs[jobid].end_date.year}</py:when><py:otherwise>Current</py:otherwise></py:choose></span></a>
+	    </dt>
+	      <dd><py:if test="user.jobs[jobid].job_summary">${user.jobs[jobid].job_summary}</py:if>
+		<ul>
+		  <li py:for="bullet in user.jobs[jobid].job_bullets">${bullet.bullet_text}</li>
+		</ul>
+		<p class="backtotop"><a href="#top">Back to top</a></p>
+	      </dd>
+	    </py:for>
+	  </dl>
+	  <h1 class="sectiontitle">Specific Skills</h1>
+	  <dl id="specialskills">
+	    <py:for each="skillid in range(len(user.skillgroups))">
+	      <dt><a name="skill_${skillid}">${user.skillgroups[skillid].name}</a></dt>
+	      <dd>
+		<table>
+		  <colgroup>
+		    <col class="skillname"/>
+		    <col class="skilltimeused"/>
+		    <col class="skilllastused"/>
+		    <col class="skillproficiency"/>
+		  </colgroup>
+		  <thead>
+		    <tr>
+		      <th></th>
+		      <th>Time Used</th>
+		      <th>Last Used</th>
+		      <th>Proficiency</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <py:for each="skill in user.skillgroups[skillid].skills">
+		      <tr>
+			<td>${skill.name}</td>
+			<td>${skill.time_used}</td>
+			<td>${skill.last_used.year}</td>
+			<td>${skill.proficiency}</td>
+		      </tr>
+		    </py:for>
+		  </tbody>
+		</table>
+		<p class="backtotop"><a href="#top">Back to top</a></p>
+	      </dd>
+	    </py:for>
+	    <dt><a name="education">Education</a></dt>
+	    <dd>
+	      <ul>
+		<py:for each="edu in user.education">
+		  <li>${edu.education}<span class="dates">${edu.date_completed.year}</span></li>
+		</py:for>
+	      </ul>
+	      <p class="backtotop"><a href="#top">Back to top</a></p>
+	    </dd>
+	    <dt><a name="awards">Awards</a></dt>
+	    <dd>
+	      <ul>
+		<py:for each="award in user.awards">
+		  <li>${award.award}<span class="dates">${award.date_awarded.year}</span></li>
+		</py:for>
+	      </ul>
+	      <p class="backtotop"><a href="#top">Back to top</a></p>
+	    </dd>
+	  </dl>
+	  <h1 class="sectiontitle">Project History</h1>
+	  <dl id="projecthistory">
+	    <py:for each="projectid in range(len(user.projects))">
+	      <dt><a name="project_${projectid}">${user.projects[projectid].name}</a></dt>
+	      <dd>
+		<table>
+		  <colgroup>
+		    <col class="key"/>
+		    <col class="value"/>
+		  </colgroup>
+		  <tbody>
+		    <tr>
+		      <th>Period</th>
+		      <td>${user.projects[projectid].start.year}<py:if test="user.projects[projectid].end">-${user.projects[projectid].end.year}</py:if></td>
+		    </tr>
+		    <tr>
+		      <th>Company</th>
+		      <td>${user.projects[projectid].job.company_name}</td>
+		    </tr>
+		    <tr>
+		      <th>Tools</th>
+		      <td>${user.projects[projectid].tools_used}</td>
+		    </tr>
+		  </tbody>
+		</table>		
+		${user.projects[projectid].summary}		
+		<ul>
+		  <li py:for="bullet in user.projects[projectid].project_bullets">${bullet.bullet_text}</li>
+		</ul>
+		<p class="backtotop"><a href="#top">Back to top</a></p>
+	      </dd>
+	    </py:for>
+	  </dl>
+	</div>
+      </div>
+    </div>
+  </body>
 </html>

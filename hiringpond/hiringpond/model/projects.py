@@ -28,7 +28,7 @@ class ProjectHistory(DeclarativeBase):
     
     userid = Column(Integer, ForeignKey('tg_user.user_id'))
     companyid = Column(Integer, ForeignKey('job_history.id'))
-    project_bullets = relationship("ProjectPoints", backref="project")
+    project_bullets = relationship("ProjectPoints", backref="project", order_by="ProjectPoints.order")
     
     ##{E:Columns}
 

@@ -7,7 +7,7 @@ from tgext.admin.tgadminconfig import TGAdminConfig
 from repoze.what import predicates
 
 from hiringpond.lib.base import BaseController
-from hiringpond.model import DBSession, metadata
+from hiringpond.model import DBSession, metadata, User
 from hiringpond import model
 
 from hiringpond.controllers.error import ErrorController
@@ -36,6 +36,32 @@ class RootController(BaseController):
         """Handle the front-page."""
         return dict(page='index')
 
+    @expose('hiringpond.templates.resume')
+    def resume(self, uid=None):
+        if not uid:
+            user = DBSession.query(User).filter(User.email_address=='wilee@example.com').first()
+        else:
+            try:
+                user = DBSession.query(User).filter(User.user_id==uid).first()
+            except:
+                user = DBSession.query(User).filter(User.email_address=='wilee@example.com').first()
+        if not user:
+                user = DBSession.query(User).filter(User.email_address=='wilee@example.com').first()
+        return {'user': user}
+    
+    @expose()
+    def photo(self, uid=None):
+        if not uid:
+            user = DBSession.query(User).filter(User.email_address=='wilee@example.com').first()
+        else:
+            try:
+                user = DBSession.query(User).filter(User.user_id==uid).first()
+            except:
+                user = DBSession.query(User).filter(User.email_address=='wilee@example.com').first()
+        if not user:
+                user = DBSession.query(User).filter(User.email_address=='wilee@example.com').first()
+        return user.photo
+    
     @expose('hiringpond.templates.login')
     def login(self, came_from=url('/')):
         """Start the user login."""

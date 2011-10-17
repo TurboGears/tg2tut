@@ -10,8 +10,11 @@ though.
 
 """
 import os
-from datetime import datetime
+import simplejson
 import sys
+
+from datetime import datetime
+
 try:
     from hashlib import sha256
 except ImportError:
@@ -141,11 +144,11 @@ class User(DeclarativeBase):
 
     created = Column(DateTime, default=datetime.now)
 
-    jobs = relationship("JobHistory", backref="user")
-    skillgroups = relationship("SkillGroups", backref="user")
-    projects = relationship("ProjectHistory", backref="user")
-    education = relationship("Education", backref="user")
-    awards = relationship("Award", backref="user")
+    jobs = relationship("JobHistory", backref="user", order_by="JobHistory.order")
+    skillgroups = relationship("SkillGroups", backref="user", order_by="SkillGroups.order")
+    projects = relationship("ProjectHistory", backref="user", order_by="ProjectHistory.order")
+    education = relationship("Education", backref="user", order_by="Education.order")
+    awards = relationship("Award", backref="user", order_by="Award.order")
 
     ##{E:Columns}
 
@@ -225,6 +228,9 @@ class User(DeclarativeBase):
         hash.update(password + str(self.password[:64]))
         return self.password[64:] == hash.hexdigest()
 
+    def phones_to_string(self):
+        phones = simplejson.loads(self.phones)
+        return ", ".join(["%s: %s" % (x, phones[x]) for x in sorted(phones)])
 
 class Permission(DeclarativeBase):
     """

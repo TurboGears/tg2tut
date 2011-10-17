@@ -16,6 +16,7 @@ class Education(DeclarativeBase):
     ##{B:Columns}
     
     id = Column(Integer, primary_key=True)
+    order = Column(Integer)
     education = Column(Unicode(255))
     date_completed = Column(DATE())
     userid = Column(Integer, ForeignKey('tg_user.user_id'))
@@ -28,6 +29,7 @@ class Award(DeclarativeBase):
     ##{B:Columns}
     
     id = Column(Integer, primary_key=True)
+    order = Column(Integer)
     award = Column(Unicode(255))
     date_awarded = Column(DATE())
     userid = Column(Integer, ForeignKey('tg_user.user_id'))

@@ -39,7 +39,7 @@ def bootstrap(command, conf, vars):
         u.awards.append(model.Award(award="Medal of Valor for Courage in the face of adversity", date_awarded=date(1950, 1, 23)))
         
         j1 = model.JobHistory()
-        j1.order = 1
+        j1.order = 3
         j1.company_name = u'Self-Employed'
         j1.job_title = u'Inventor and Super Genius'
         j1.job_city = u'Desert Springs'
@@ -50,13 +50,13 @@ def bootstrap(command, conf, vars):
         j1.tags = u'["inventor", "genius", "mechanical"]'
         j1.hidden = False
 
-        j1.job_bullets.append(model.JobPoints(order=1, bullet_text='Built rocket car capable of outrunning the Road Runner. Brakes proved inadequate, but this was still successful', tags='["mechanical", "rocket"]', hidden=False))
-        j1.job_bullets.append(model.JobPoints(order=2, bullet_text='Used Newtonian physics and mecahanical engineering techniques to devise varieties of catapults (complete with hair triggers) to assist in Road Runner capture', tags='["physics", "mechanical", "catapult"]', hidden=False))
+        j1.job_bullets.append(model.JobPoints(order=2, bullet_text='Built rocket car capable of outrunning the Road Runner. Brakes proved inadequate, but this was still successful', tags='["mechanical", "rocket"]', hidden=False))
+        j1.job_bullets.append(model.JobPoints(order=1, bullet_text='Used Newtonian physics and mecahanical engineering techniques to devise varieties of catapults (complete with hair triggers) to assist in Road Runner capture', tags='["physics", "mechanical", "catapult"]', hidden=False))
 
         u.jobs.append(j1)
         
         j2 = model.JobHistory()
-        j2.order = 2
+        j2.order = 1
         j2.company_name = u'ACME Corporation'
         j2.job_title = u'Product Tester'
         j2.job_city = u'Desert Springs'
@@ -67,13 +67,13 @@ def bootstrap(command, conf, vars):
         j2.tags = u'["safety", "testing", "injury"]'
         j2.hidden = False
 
-        j2.job_bullets.append(model.JobPoints(order=1, bullet_text='Tested various release mechanisms from ACME, designed to disengage locks on catapults, boulders, braking systems, and other apparatus. Often times with detrimental effects.', tags='["testing", "injury"]', hidden=False))
-        j2.job_bullets.append(model.JobPoints(order=2, bullet_text='Tested several machines capable of great speed. Found several of them that had such high acceleration that the fell apart on attempts to use full speed.', tags='["testing"]', hidden=False))
+        j2.job_bullets.append(model.JobPoints(order=2, bullet_text='Tested various release mechanisms from ACME, designed to disengage locks on catapults, boulders, braking systems, and other apparatus. Often times with detrimental effects.', tags='["testing", "injury"]', hidden=False))
+        j2.job_bullets.append(model.JobPoints(order=1, bullet_text='Tested several machines capable of great speed. Found several of them that had such high acceleration that the fell apart on attempts to use full speed.', tags='["testing"]', hidden=False))
         
         u.jobs.append(j2)
         
         j3 = model.JobHistory()
-        j3.order = 3
+        j3.order = 2
         j3.company_name = u'Stunt Animals, Inc.'
         j3.job_title = u'Professional Stunt Coyote'
         j3.job_city = u'Desert Springs'
@@ -84,8 +84,8 @@ def bootstrap(command, conf, vars):
         j3.tags = u'["stunt", "safety", "demolitions", "vehicles"]'
         j3.hidden = False
 
-        j3.job_bullets.append(model.JobPoints(order=1, bullet_text='Fell off high cliffs, passing boulders on the way down, before getting hit by them, and walking away injury free.', tags='["injury", "stunt"]', hidden=False))
-        j3.job_bullets.append(model.JobPoints(order=2, bullet_text='Crushed by various items (boulders, trains, passing vehicles) in many diverse situations. Walked away with minimal injuries.', tags='["injury", "stunt"]', hidden=False))
+        j3.job_bullets.append(model.JobPoints(order=2, bullet_text='Fell off high cliffs, passing boulders on the way down, before getting hit by them, and walking away injury free.', tags='["injury", "stunt"]', hidden=False))
+        j3.job_bullets.append(model.JobPoints(order=1, bullet_text='Crushed by various items (boulders, trains, passing vehicles) in many diverse situations. Walked away with minimal injuries.', tags='["injury", "stunt"]', hidden=False))
         u.jobs.append(j3)
 
         s1 = model.SkillGroups()
