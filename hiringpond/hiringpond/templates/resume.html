@@ -27,6 +27,7 @@
       </div>
       <div id="contactinfo">
 	<p>${user.display_name}
+	  <py:if test="user.title"><br/>${user.title}</py:if>
 	  <py:if test="user.streetaddress"><br/>${user.streetaddress}</py:if>
 	  <py:if test="user.city or user.state_province or user.postal_code"><br/></py:if>
 	    <py:if test="user.city">${user.city}, </py:if>
@@ -63,11 +64,7 @@
 	      <li py:for="projectid in range(len(user.projects))"><a href="#project_${projectid}">${user.projects[projectid].name}</a></li>
 	    </ul>
 	  </li>
-	  <li>Downloadable Resumes
-	    <ul>
-	      <li></li>
-	    </ul>
-	  </li>
+	  <li>Downloadable Resumes</li>
 	  <li>Downloadable Contact Info</li>
 	</ul>
       </div>
@@ -180,6 +177,23 @@
 	  </dl>
 	</div>
       </div>
+      <br class="clearboth"/>
+      <div id="findmeon">
+	<span>Find me on these sites:</span>
+	<span id="findmeonlogos">
+	  <a href="http://www.google.com/profiles/mjpeder"><img src="google.png" alt="Google+ Logo" title="Google+"/></a>
+	  <a href="http://www.profile.to/michaelpedersen/"><img src="facebook.png" alt="Facebook Logo" title="Facebook"/></a>
+	  <a href="http://www.linkedin.com/in/michaeljpedersen"><img src="linkedin.png" alt="LinkIn Logo" title="LinkedIn"/></a>
+	  <a href="http://codersbuffet.blogspot.com/"><img src="blogger.png" alt="Blogger Logo" title="Blogger"/></a>
+	  <a href="https://twitter.com/#!/@pedersentg"><img src="twitter.png" alt="Twitter Logo" title="Twitter"/></a>
+	  <a href="http://groups.google.com/group/turbogears-trunk"><img src="turbogears.png" alt="TurboGears Logo" title="TurboGears Mailing List"/></a>
+	</span>
+      </div>
+      <br class="clearboth"/>    
+    </div>
+    <div id="qrcode">
+      <p>You may download my <a href="${tg.url('/vcf', uid=user.user_id)}">virtual business card</a>. Alternately, the image below is my vcard, embedded as a QRCode. Using Barcode Reader (Android) or Scanlife (iPhone), you can scan it and add me as a contact directly on your phone.</p>
+      <img src="${tg.url('/vcard', uid=user.user_id)}" alt="QR-Code: ${user.display_name}'s VCard"/>
     </div>
   </body>
 </html>

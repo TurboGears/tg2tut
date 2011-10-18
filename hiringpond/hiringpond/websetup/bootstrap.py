@@ -21,6 +21,7 @@ def bootstrap(command, conf, vars):
         u = model.User()
         u.user_name = u'wilee'
         u.display_name = u'Wile E. Coyote'
+        u.title = u'Super Genius'
         u.email_address = u'wilee@example.com'
         u.password = u'wilee'
         u.streetaddress = u'The Unknown Highway'
@@ -32,7 +33,7 @@ def bootstrap(command, conf, vars):
         u.logo = None
         u.callingcard = None
         u.photo = buffer(resource_string(Requirement.parse("hiringpond"),"hiringpond/websetup/Wile_E_Coyote.png"))
-        u.external_links = '{"wikipedia": "http://en.wikipedia.org/wiki/Wile_E._Coyote_and_Road_Runner"}'
+        u.external_links = '{"wikipedia": "http://en.wikipedia.org/wiki/Wile_E._Coyote_and_Road_Runner", "homepage": "http://looneytunes.kidswb.com/"}'
         u.default_summary = u"I have held a wide variety of jobs over the past several decades, ranging from tunnel painter to inventor to product tester. I have a knack for finding out ways in which things will break, bringing harm to their users, and would be happy to help any company avoid the liability from such mishaps. Especially if that company's products can help me catch the Road RUnner finally."
 
         u.education.append(model.Education(education="Desert Springs University", date_completed=date(1940, 12, 20)))

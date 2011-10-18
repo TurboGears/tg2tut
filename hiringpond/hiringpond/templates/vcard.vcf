@@ -1,0 +1,12 @@
+{% python from datetime import datetime; now = datetime.now(); urls = user.links_to_dict(); phones=user.phones_to_dict() %}BEGIN:VCARD
+VERSION:2.1
+FN:${user.display_name}
+{% if user.title %}TITLE:${user.title}{% end %}
+{% for phone in phones %}TEL;${phone.upper()};VOICE;${phones[phone]}{% end %}
+ADR;HOME:;;${user.streetaddress.replace('\n','=0D=0A')};${user.city};${user.state_province if user.state_province else ""};${user.postal_code};${user.country if user.country else ""}
+LABEL;HOME;ENCODING=QUOTED-PRINTABLE:${user.streetaddress.replace('\n','=0D=0A')}=0D=0A${user.city}, ${user.state_province if user.state_province else ""} ${user.postal_code}=0D=0A${user.country if user.country else ""}
+{% if user.email_address %}EMAIL;PREF;INTERNET:${user.email_address}{% end %}
+{% if 'homepage' in urls %}URL:${urls['homepage']}{% end %}
+REV:${'%04d%02d%02dT%02d%02d%02dZ' % (now.year, now.month, now.day, now.hour, now.minute, now.second)}
+END:VCARD
+

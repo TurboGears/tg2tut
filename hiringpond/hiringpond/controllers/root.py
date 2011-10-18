@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 """Main Controller"""
 
+from datetime import datetime
+
 from tg import expose, flash, require, url, request, redirect
 from tg.i18n import ugettext as _, lazy_ugettext as l_
 from tgext.admin.tgadminconfig import TGAdminConfig
 from repoze.what import predicates
 
 from hiringpond.lib.base import BaseController
+from hiringpond.lib.util import get_user_or_default_user
 from hiringpond.model import DBSession, metadata, User
 from hiringpond import model
 
@@ -37,30 +40,28 @@ class RootController(BaseController):
         return dict(page='index')
 
     @expose('hiringpond.templates.resume')
-    def resume(self, uid=None):
-        if not uid:
-            user = DBSession.query(User).filter(User.email_address=='wilee@example.com').first()
-        else:
-            try:
-                user = DBSession.query(User).filter(User.user_id==uid).first()
-            except:
-                user = DBSession.query(User).filter(User.email_address=='wilee@example.com').first()
-        if not user:
-                user = DBSession.query(User).filter(User.email_address=='wilee@example.com').first()
-        return {'user': user}
+    def resume(self, uid=None, fmt='html', tags=''):
+        user = get_user_or_default_user(uid)
+        return {'user': user, 'tags': set(tags.split(','))}
     
     @expose()
     def photo(self, uid=None):
-        if not uid:
-            user = DBSession.query(User).filter(User.email_address=='wilee@example.com').first()
-        else:
-            try:
-                user = DBSession.query(User).filter(User.user_id==uid).first()
-            except:
-                user = DBSession.query(User).filter(User.email_address=='wilee@example.com').first()
-        if not user:
-                user = DBSession.query(User).filter(User.email_address=='wilee@example.com').first()
+        user = get_user_or_default_user(uid)
         return user.photo
+    
+    @expose()
+    def logo(self, uid=None):
+        user = get_user_or_default_user(uid)
+        return user.logo
+
+    @expose()
+    def vcard(self, uid=None):
+        user = get_user_or_default_user(uid)
+
+    @expose('vcard:hiringpond.templates.vcard', content_type='text/x-vcard')
+    def vcf(self, uid=None):
+        user = get_user_or_default_user(uid)
+        return {'user':user}
     
     @expose('hiringpond.templates.login')
     def login(self, came_from=url('/')):

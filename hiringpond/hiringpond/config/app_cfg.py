@@ -13,13 +13,75 @@ convert them into boolean, for example, you should use the
  
 """
 
-from tg.configuration import AppConfig
+from tg.configuration import AppConfig, config
+from tg.render import my_pylons_globals
+
+from genshi.template import TemplateLoader, NewTextTemplate
+from pylons import (app_globals, session, tmpl_context, request,
+                    response, templating)
 
 import hiringpond
 from hiringpond import model
 from hiringpond.lib import app_globals, helpers 
 
-base_config = AppConfig()
+class VCardTemplateLoader(TemplateLoader):
+    template_extension = '.vcf'
+
+    def get_dotted_filename(self, filename):
+        if not filename.endswith(self.template_extension):
+            finder = config['pylons.app_globals'].dotted_filename_finder
+            filename = finder.get_dotted_filename(
+                    template_name=filename,
+                    template_extension=self.template_extension)
+        return filename
+
+    def load(self, filename, relative_to=None, cls=None, encoding=None):
+        """Actual loader function."""
+        return TemplateLoader.load(
+                self, self.get_dotted_filename(filename),
+                relative_to=relative_to, cls=NewTextTemplate, encoding=encoding)
+
+class RenderVCard(object):
+    """Singleton that can be called as the vcard render function."""
+
+    genshi_functions = {} # auxiliary Genshi functions loaded on demand
+
+    def __init__(self, loader):
+        if not self.genshi_functions:
+            from genshi import HTML, XML
+            self.genshi_functions.update(HTML=HTML, XML=XML)
+        self.load_template = loader.load
+
+    def __call__(self, template_name, template_vars, **kwargs):
+        """Render the template_vars with the Genshi template."""
+        template_vars.update(self.genshi_functions)
+
+        # Gets document type from content type or from config options
+        doctype = 'text/x-vcard'
+        method='vcf'
+        kwargs['doctype'] = doctype
+        kwargs['method'] = method
+
+        def render_template():
+            template_vars.update(my_pylons_globals())
+            template = self.load_template(template_name)
+            return template.generate(**template_vars).render(encoding=None)
+
+        return templating.cached_template(
+            template_name, render_template,
+            **kwargs)
+
+
+class HiringPondConfig(AppConfig):
+    def setup_vcard_renderer(self):
+        loader = VCardTemplateLoader(search_path=self.paths.templates,
+                                auto_reload=self.auto_reload_templates)
+
+        print loader.get_dotted_filename('hiringpond.templates.vcard')
+        self.render_functions.vcard = RenderVCard(loader)
+
+
+base_config = HiringPondConfig()
 base_config.renderers = []
 
 base_config.package = hiringpond
@@ -29,6 +91,9 @@ base_config.renderers.append('json')
 #Set the default renderer
 base_config.default_renderer = 'genshi'
 base_config.renderers.append('genshi')
+# Add vcard rendering (genshi plain text renderer)
+base_config.renderers.append('vcard')
+
 # if you want raw speed and have installed chameleon.genshi
 # you should try to use this renderer instead.
 # warning: for the moment chameleon does not handle i18n translations

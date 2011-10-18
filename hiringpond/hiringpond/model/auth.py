@@ -117,6 +117,8 @@ class User(DeclarativeBase):
 
     display_name = Column(Unicode(255))
 
+    title = Column(Unicode(64))
+
     streetaddress = Column(Unicode(255))
 
     city = Column(Unicode(255))
@@ -135,7 +137,7 @@ class User(DeclarativeBase):
 
     photo = Column(LargeBinary(1024*256))
 
-    external_links = Column(Unicode(1024*256))
+    external_links = Column(Unicode(1024*256)) # JSON Encoded
 
     default_summary = Column(Unicode(8192))
 
@@ -231,6 +233,12 @@ class User(DeclarativeBase):
     def phones_to_string(self):
         phones = simplejson.loads(self.phones)
         return ", ".join(["%s: %s" % (x, phones[x]) for x in sorted(phones)])
+
+    def phones_to_dict(self):
+        return simplejson.loads(self.phones)
+    
+    def links_to_dict(self):
+        return simplejson.loads(self.external_links)
 
 class Permission(DeclarativeBase):
     """
