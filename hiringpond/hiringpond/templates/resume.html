@@ -181,12 +181,19 @@
       <div id="findmeon">
 	<span>Find me on these sites:</span>
 	<span id="findmeonlogos">
-	  <a href="http://www.google.com/profiles/mjpeder"><img src="google.png" alt="Google+ Logo" title="Google+"/></a>
-	  <a href="http://www.profile.to/michaelpedersen/"><img src="facebook.png" alt="Facebook Logo" title="Facebook"/></a>
-	  <a href="http://www.linkedin.com/in/michaeljpedersen"><img src="linkedin.png" alt="LinkIn Logo" title="LinkedIn"/></a>
-	  <a href="http://codersbuffet.blogspot.com/"><img src="blogger.png" alt="Blogger Logo" title="Blogger"/></a>
-	  <a href="https://twitter.com/#!/@pedersentg"><img src="twitter.png" alt="Twitter Logo" title="Twitter"/></a>
-	  <a href="http://groups.google.com/group/turbogears-trunk"><img src="turbogears.png" alt="TurboGears Logo" title="TurboGears Mailing List"/></a>
+	  <?python
+	       urls = user.links_to_dict()
+	  ?>
+	  <py:for each="url in sorted(urls.keys())">
+	     <py:choose test="">
+	       <py:when test="url=='google+'"><a href="${urls[url]}"><img src="/images/google.png" alt="Google+ Logo" title="Google+"/></a></py:when>
+	       <py:when test="url=='facebook'"><a href="${urls[url]}"><img src="/images/facebook.png" alt="Facebook Logo" title="Facebook"/></a></py:when>
+	       <py:when test="url=='linkedin'"><a href="${urls[url]}"><img src="/images/linkedin.png" alt="LinkedIn Logo" title="LinkedIn"/></a></py:when>
+	       <py:when test="url=='blogger'"><a href="${urls[url]}"><img src="/images/blogger.png" alt="Blogger Logo" title="Blogger"/></a></py:when>
+	       <py:when test="url=='twitter'"><a href="${urls[url]}"><img src="/images/twitter.png" alt="Twitter Logo" title="Twitter"/></a></py:when>
+	       <py:otherwise><a href="${urls[url]}"><img src="/images/other.png" alt="Other Site" title="Other"/></a></py:otherwise>
+	     </py:choose>
+	  </py:for>
 	</span>
       </div>
       <br class="clearboth"/>    
