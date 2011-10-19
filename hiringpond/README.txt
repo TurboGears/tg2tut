@@ -26,7 +26,6 @@ Then you are ready to go.
 TODO List
 =========
 
- * add docutils to output strings where appropriate (everywhere?)
  * add login
  * add ability to edit own resume
  * add ability to compile new custom resumes
@@ -57,3 +56,5 @@ TODO List
  * support for myresume.hiringpond.com
  * add support for searching the whole site
  * add notice disclaiming trademark ownership
+ * add support for adding in a google-analytics account
+ * add support for adding in a google verifier meta tag

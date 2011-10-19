@@ -49,7 +49,8 @@ setup(
         "tgext.admin >= 0.3.9",
         "tw.forms",
         "PIL",
-        "pyqrencode"
+        "pyqrencode",
+        "docutils"
         ],
     setup_requires=["PasteScript >= 1.7"],
     paster_plugins=['PasteScript', 'Pylons', 'TurboGears2', 'tg.devtools'],

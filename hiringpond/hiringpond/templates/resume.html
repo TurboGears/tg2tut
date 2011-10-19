@@ -91,7 +91,7 @@
 	  <py:if test="user.default_summary">
 	    <div id="summary">
 	      <h1 class="sectiontitle">Summary</h1>
-	      ${user.default_summary}
+	      ${HTML(tmpl_context.rst_to_html(user.default_summary))}
 	    </div>
 	  </py:if>
 	  <h1 class="sectiontitle">Job History</h1>
@@ -99,9 +99,9 @@
 	    <py:for each="jobid in range(len(user.jobs))">
 	      <dt><a name="job_${jobid}"><span class="jobname">${user.jobs[jobid].company_name}</span><span class="jobsite">${user.jobs[jobid].job_city}, ${user.jobs[jobid].job_state}</span><span class="jobtitle">${user.jobs[jobid].job_title}</span><span class="dates">${user.jobs[jobid].start_date.year}-<py:choose test=""><py:when test="user.jobs[jobid].end_date">${user.jobs[jobid].end_date.year}</py:when><py:otherwise>Current</py:otherwise></py:choose></span></a>
 	    </dt>
-	      <dd><py:if test="user.jobs[jobid].job_summary">${user.jobs[jobid].job_summary}</py:if>
+	      <dd><py:if test="user.jobs[jobid].job_summary">${HTML(tmpl_context.rst_to_html(user.jobs[jobid].job_summary))}</py:if>
 		<ul>
-		  <li py:for="bullet in user.jobs[jobid].job_bullets">${bullet.bullet_text}</li>
+		  <li py:for="bullet in user.jobs[jobid].job_bullets">${HTML(tmpl_context.rst_to_html(bullet.bullet_text))}</li>
 		</ul>
 		<p class="backtotop"><a href="#top">Back to top</a></p>
 	      </dd>
@@ -185,9 +185,9 @@
 		    </tr>
 		  </tbody>
 		</table>		
-		${user.projects[projectid].summary}		
+		${HTML(tmpl_context.rst_to_html(user.projects[projectid].summary))}
 		<ul>
-		  <li py:for="bullet in user.projects[projectid].project_bullets">${bullet.bullet_text}</li>
+		  <li py:for="bullet in user.projects[projectid].project_bullets">${HTML(tmpl_context.rst_to_html(bullet.bullet_text))}</li>
 		</ul>
 		<p class="backtotop"><a href="#top">Back to top</a></p>
 	      </dd>

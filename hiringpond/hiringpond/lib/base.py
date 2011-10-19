@@ -6,7 +6,9 @@ from tg import TGController, tmpl_context
 from tg.render import render
 from tg import request
 from tg.i18n import ugettext as _, ungettext
+
 import hiringpond.model as model
+from hiringpond.lib.util import rst_to_html
 
 __all__ = ['BaseController']
 
@@ -28,4 +30,5 @@ class BaseController(TGController):
 
         request.identity = request.environ.get('repoze.who.identity')
         tmpl_context.identity = request.identity
+        tmpl_context.rst_to_html = rst_to_html
         return TGController.__call__(self, environ, start_response)
