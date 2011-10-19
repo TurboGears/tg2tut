@@ -29,7 +29,9 @@ TODO List
  * add login
  * add ability to edit own resume
  * complete tag support
- * add ability to define the default user, and make it the only thing that displays (i.e.: single posted resume mode)
+ * add support for adding in a google-analytics account per resume
+ * add support for adding in a google-analytics account for all site
+ * add support for adding in a google verifier meta tag for all site
  * add ability to compile new custom resumes
  * add ability to change default resume displayed
  * add ability to output PDF
@@ -55,9 +57,6 @@ TODO List
  * add ability to track job hunt progress
  * add ability to track stats on resume sending
  * add support for searching the whole site
- * add support for adding in a google-analytics account per resume
- * add support for adding in a google-analytics account for all site
- * add support for adding in a google verifier meta tag for all site
  * add logo to qrcode
  * change colors of qrcode
  * spell checker

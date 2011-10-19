@@ -5,7 +5,7 @@ from datetime import datetime
 from StringIO import StringIO
 
 from qrencode import Encoder
-from tg import expose, flash, require, url, request, redirect, render
+from tg import expose, flash, require, url, request, redirect, render, config, override_template
 from tg.i18n import ugettext as _, lazy_ugettext as l_
 from tgext.admin.tgadminconfig import TGAdminConfig
 from repoze.what import predicates
@@ -38,7 +38,12 @@ class RootController(BaseController):
     @expose('hiringpond.templates.index')
     def index(self):
         """Handle the front-page."""
-        return dict(page='index')
+        if config.get('single_user', False):
+            override_template(self.index, 'genshi:hiringpond.templates.resume')
+            user = get_user_or_default_user()
+        else:
+            user = None
+        return {'user': user, 'tags': ''}
 
     @expose('hiringpond.templates.resume')
     def resume(self, uid=None, fmt='html', tags=''):

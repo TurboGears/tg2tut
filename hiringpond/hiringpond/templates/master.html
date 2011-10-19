@@ -10,6 +10,9 @@
           py:attrs="dict(content='%s; charset=%s' % (response.content_type, response.charset))" />
     <title py:if="False">Your title goes here</title>
     <meta py:replace="select('*')"/>
+    <py:if test="tmpl_context.gaid">
+    <meta name="google-site-verification" content="${tmpl_context.gaid}"/>
+    </py:if>
 </head>
 
 <body py:match="body" py:attrs="select('@*')">
