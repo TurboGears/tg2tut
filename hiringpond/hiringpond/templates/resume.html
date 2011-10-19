@@ -6,8 +6,25 @@
 
   <xi:include href="master.html" />
 
+<?python
+    def getkeywords(user):
+        keywords = []
+        keywords.extend([x.company_name for x in user.jobs])
+        keywords.extend([x.job_title for x in user.jobs])
+        for g in user.skillgroups:
+            keywords.extend([x.name for x in g.skills])
+        keywords.extend([x.name for x in user.projects])
+        for p in user.projects:
+            keywords.extend(p.tools_used.split(','))
+        keywords.extend([x.education for x in user.education])
+        keywords.extend([x.award for x in user.awards])
+        keywords = list(set([x.strip() for x in keywords]))
+        return ",".join(keywords)
+?>
   <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" py:if="False"/>
+    <meta name="keywords" content="${getkeywords(user)}"/>
+    <meta name="description" content="Hiring Pond resume for ${user.display_name}: ${user.default_summary}"/>
     <title>Hiring Pond: ${user.display_name}'s Resume</title>
     <link type="text/css" rel="stylesheet" href="${tg.url('/css/hiringpond.css')}" />
     <link type="text/css" rel="stylesheet" href="${tg.url('/css/jdMenu.css')}" />

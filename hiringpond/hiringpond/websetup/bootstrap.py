@@ -154,7 +154,7 @@ def bootstrap(command, conf, vars):
         p2.summary = u'The fauna of the southwestern United States is rich. Certain aspects, though, require study and isloation. In particular, the road runner species has proved to be most damaging to other fauna of the region, and attempts to control it have been difficult at best. Over the past several decades, I have attempted to garner specimens of the population so as to determine how best to neutralize the damage it causes.'
         p2.start = date(1948, 6, 1)
         p2.end = None
-        p1.tools_used = u'ACME Corporation Products, Rockets, Paint, Roller Skates'
+        p2.tools_used = u'ACME Corporation Products, Rockets, Paint, Roller Skates'
         p2.tags = '["acme", "stunt", "mechanical", "physics", "gravity", "injury"]'
         p2.hidden = False
 
