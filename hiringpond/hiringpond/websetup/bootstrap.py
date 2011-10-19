@@ -32,6 +32,7 @@ def bootstrap(command, conf, vars):
         u.phones = u'{"cell": "908-555-1313"}'
         u.logo = None
         u.callingcard = None
+        u.analyticsid = "fakewilee"
         u.photo = buffer(resource_string(Requirement.parse("hiringpond"),"hiringpond/websetup/Wile_E_Coyote.png"))
         u.external_links = '{"wikipedia": "http://en.wikipedia.org/wiki/Wile_E._Coyote_and_Road_Runner", "homepage": "http://looneytunes.kidswb.com/"}'
         u.default_summary = u"I have held a wide variety of jobs over the past several decades, ranging from tunnel painter to inventor to product tester. I have a knack for finding out ways in which things will break, bringing harm to their users, and would be happy to help any company avoid the liability from such mishaps. Especially if that company's products can help me catch the Road RUnner finally.\n\n**Note: Wile E. Coyote is a trademark of Warner Bros, Inc, and is used here solely for satirical and education purposes.**"

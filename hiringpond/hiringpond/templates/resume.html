@@ -237,5 +237,15 @@
       <p>You may download my <a href="${tg.url('/vcf', uid=user.user_id)}">virtual business card</a>. Alternately, the image below is my vcard, embedded as a QRCode. Using Barcode Reader (Android) or Scanlife (iPhone), you can scan it and add me as a contact directly on your phone.</p>
       <img src="${tg.url('/vcard', uid=user.user_id)}" alt="QR-Code: ${user.display_name}'s VCard"/>
     </div>
+    <py:if test="user.analyticsid">
+      <script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+      <script type="text/javascript">
+	var pageTracker = _gat._getTracker("${user.analyticsid}");
+	pageTracker._trackPageview();
+      </script>
+    </py:if>
   </body>
 </html>

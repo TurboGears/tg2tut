@@ -141,6 +141,8 @@ class User(DeclarativeBase):
 
     default_summary = Column(Unicode(8192))
 
+    analyticsid = Column(Unicode(32))
+
     _password = Column('password', Unicode(128),
                        info={'rum': {'field':'Password'}})
 

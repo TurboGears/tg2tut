@@ -29,9 +29,6 @@ TODO List
  * add login
  * add ability to edit own resume
  * complete tag support
- * add support for adding in a google-analytics account per resume
- * add support for adding in a google-analytics account for all site
- * add support for adding in a google verifier meta tag for all site
  * add ability to compile new custom resumes
  * add ability to change default resume displayed
  * add ability to output PDF
@@ -47,7 +44,6 @@ TODO List
  * add generic logo
  * add generic photo / head (shadow) shot
  * add ability to register new account
- * add ability to change default user
  * add ability to delete user
  * add ability to suspend/hide user
  * add ability to login using Google, Yahoo, Facebook, etc
@@ -60,7 +56,7 @@ TODO List
  * add logo to qrcode
  * change colors of qrcode
  * spell checker
- * proper support for googlebot
+ * proper support for googlebot (and other search engine spiders)
  * support for myresume.hiringpond.com and www.hiringpond.com/myresume
  * add support for contracting companies to be able to advertise their available staff
  * add storage quotas/limits

@@ -32,4 +32,5 @@ class BaseController(TGController):
         tmpl_context.identity = request.identity
         tmpl_context.rst_to_html = rst_to_html
         tmpl_context.gaid = config.get('ga_verifier', None)
+        tmpl_context.analyticsid = config.get('analyticsid', None)
         return TGController.__call__(self, environ, start_response)

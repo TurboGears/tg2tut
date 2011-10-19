@@ -20,5 +20,15 @@
     <div py:if="flash" py:content="XML(flash)" />
   </py:with>
   <div py:replace="select('*|text()')"/>
+  <py:if test="tmpl_context.analyticsid">
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      var pageTracker = _gat._getTracker("${tmpl_context.analyticsid}");
+      pageTracker._trackPageview();
+    </script>
+  </py:if>
 </body>
 </html>
