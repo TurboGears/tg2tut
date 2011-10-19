@@ -8,7 +8,25 @@
 
   <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" py:if="False"/>
-    <title>Hiring Pond: Resume for ${user.display_name}</title>
+    <title>Hiring Pond: ${user.display_name}'s Resume</title>
+    <link type="text/css" rel="stylesheet" href="${tg.url('/css/hiringpond.css')}" />
+    <link type="text/css" rel="stylesheet" href="${tg.url('/css/jdMenu.css')}" />
+    <link type="text/css" rel="stylesheet" href="${tg.url('/css/jdMenu.slate.css')}" />
+    <link type="text/css" rel="stylesheet" href="${tg.url('/css/jquery.autocomplete.css')}" />
+    <script type="text/javascript" src="${tg.url('/javascript/jquery-1.6.2.min.js')}"></script>
+    <script type="text/javascript" src="${tg.url('/javascript/jquery.jqDock.min.js')}"></script>
+    <script type="text/javascript" src="${tg.url('/javascript/jquery.dimensions.js')}"></script>
+    <script type="text/javascript" src="${tg.url('/javascript/jquery.bgiframe.js')}"></script>
+    <script type="text/javascript" src="${tg.url('/javascript/jquery.jdMenu.js')}"></script>
+    <script type="text/javascript" src="${tg.url('/javascript/jquery.positionBy.js')}"></script>
+    <script type="text/javascript" src="${tg.url('/javascript/jquery.mailme.js')}"></script>
+    <script type="text/javascript" src="${tg.url('/javascript/jquery.ui.js')}"></script>
+    <script type="text/javascript" src="${tg.url('/javascript/jquery.ui.core.js')}"></script>
+    <script type="text/javascript" src="${tg.url('/javascript/jquery.ui.position.js')}"></script>
+    <script type="text/javascript" src="${tg.url('/javascript/jquery.ui.widget.js')}"></script>
+    <script type="text/javascript" src="${tg.url('/javascript/jquery.ui.dialog.js')}"></script>
+    <script type="text/javascript" src="${tg.url('/javascript/jquery.autocomplete.min.js')}"></script>
+    <script type="text/javascript" src="${tg.url('/javascript/hiringpond.js')}"></script>
   </head>
   <body>
     <div id="content">
@@ -16,7 +34,7 @@
       <div id="mainphoto">
 	<py:choose test="">
 	  <py:when test="user.photo is not None"><img src="${tg.url('/photo', uid=user.user_id)}" alt="${user.display_name} photo"/></py:when>
-	  <py:when test="user.photo is None"><!-- generic photo --></py:when>
+	  <py:when test="user.photo is None"><!-- todo: generic photo --></py:when>
 	</py:choose>
       </div>
       <div id="logo">
@@ -65,7 +83,7 @@
 	    </ul>
 	  </li>
 	  <li>Downloadable Resumes</li>
-	  <li>Downloadable Contact Info</li>
+	  <li><a href="${tg.url('/vcard', uid=user.user_id)}" id="qrcodelink">Downloadable Contact Info</a></li>
 	</ul>
       </div>
       <div id="maincontentwrapper">
@@ -191,7 +209,7 @@
 	       <py:when test="url=='linkedin'"><a href="${urls[url]}"><img src="/images/linkedin.png" alt="LinkedIn Logo" title="LinkedIn"/></a></py:when>
 	       <py:when test="url=='blogger'"><a href="${urls[url]}"><img src="/images/blogger.png" alt="Blogger Logo" title="Blogger"/></a></py:when>
 	       <py:when test="url=='twitter'"><a href="${urls[url]}"><img src="/images/twitter.png" alt="Twitter Logo" title="Twitter"/></a></py:when>
-	       <py:otherwise><a href="${urls[url]}"><img src="/images/other.png" alt="Other Site" title="Other"/></a></py:otherwise>
+	       <py:otherwise><a href="${urls[url]}"><img src="/images/other.png" alt="Other Site" title="${url}"/></a></py:otherwise>
 	     </py:choose>
 	  </py:for>
 	</span>

@@ -1,0 +1,210 @@
+/* constants:
+   darkest blue: #6799cc
+   medium blue:  #93beeb
+   light blue:   #b9cadc
+   green:        #d4dbba
+   light grey:   #b1b6bc
+   dark grey:    #9198a2
+   */
+
+p.swatch {
+    height: 30px;
+    width: 30px;
+    border: 2px solid black;
+    display: inline;
+    padding: 5px;
+    }
+
+p.dblue { background-color: #6799cc; }
+p.mblue { background-color: #93beeb; }
+p.lblue { background-color: #b9cadc; }
+p.green { background-color: #d4dbba; }
+p.lgrey { background-color: #b1b6bc; }
+p.dgrey { background-color: #9198a2; }
+
+@font-face {  
+  font-family: "BitstreamVeraSerif";  
+  src: url( css/VeraSe.eot ); /* IE */  
+  src: local("Bitstream Vera Serif"), url(css/VeraSe.ttf) format("truetype"); /* non-IE */  
+}  
+ 
+body {
+    background-color: #93beeb;
+    font-family: "BitstreamVeraSerif", courier, serif;
+    text-color: #000000;
+    font-size: 11pt;
+    }
+
+#content {
+    width: 1024px;
+    text-align: left;
+    top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #b9cadc;
+    padding: 0.5em;
+    }
+
+#logo {
+    display: inline;
+    float: left;
+    padding: 1em;
+    }
+
+#jobhistory {
+    display: inline;
+    float: left;
+    padding: 1em;
+    top: -2em;
+}
+
+h1.sectiontitle {
+    font-size: 16pt;
+    border-bottom: 1px dashed black;
+    }
+
+#contactinfo {
+    display: inline;
+    float: left;
+    padding: 1em;
+    }
+
+.clearboth {
+    clear: both;
+    }
+
+#maincontentwrapper {
+    float: right;
+    }
+
+#maincontent {
+    width: 850px;
+    text-align: justify;
+    padding-right: 1em;
+    }
+
+#mainphoto {
+    float: left;
+    padding: 1.5em;
+    }
+
+#findmeon {
+    margin-left: 20%;
+    margin-right: auto;
+    vertical-align: bottom;
+    }
+
+#findmeon span {
+    display: inline;
+    float: left;
+    padding: 1em;
+    }
+
+#findmeonlogos {
+    display: inline;
+    float: left;
+    }
+
+span.jobname {
+    font-weight: bold;
+    font-size: 10pt;
+    }
+
+span.jobsite:before {
+    content: ", ";
+    }
+
+span.jobtitle:before {
+    content: " - ";
+    }
+
+span.jobsite, span.jobtitle, span.dates {
+    font-size: 9pt;
+    }
+
+span.dates {
+    float: right;
+    padding-right: 1em;
+    }
+
+#specialskills dd table {
+    width: 100%;
+    table-layout: fixed;
+    }
+
+#specialskills dd table colgroup col.skillname {
+    width: 55%;
+    overflow: auto;
+    }
+
+#specialskills dd table colgroup col.skilltimeused, #specialskills dd table colgroup col.skilllastused, #specialskills dd table colgroup col.skillproficiency{
+    width: 15%;
+    overflow: auto;
+    }
+
+#specialskills dd table thead th {
+    font-size: 10pt;
+    }
+
+#specialskills dd table {
+    padding-bottom: 1em;
+    }
+
+#jobhistorybody dt, #specialskills dt, #projecthistory dt {
+    font-weight: bold;
+    font-size: 12pt;
+    font-style: italic;
+    }
+
+#jobhistorybody dt.link, #specialskills dt.link, #projecthistory dt.link {
+    text-decoration: underline;
+    cursor: pointer;
+    }
+
+#projecthistory dt {
+    padding-bottom: 0.25em;
+    }
+
+#projecthistory dd table colgroup col.key {
+    width: 25%;
+    overflow: auto;
+    }
+
+#projecthistory dd table tbody tr th {
+    text-align: left;
+    font-size: 10pt;
+    }
+
+#jobhistorybody dt.collapsed:before, #specialskills dt.collapsed:before, #projecthistory dt.collapsed:before {
+    content: "+ ";
+    }
+
+#jobhistorybody dt.expanded:before, #specialskills dt.expanded:before, #projecthistory dt.expanded:before {
+    content: "- ";
+    }
+
+#summary {
+    display: inline;
+    float: left;
+    }
+
+#qrcode p {
+    padding-top: 2em;
+    }
+
+#qrcode {
+    display: none;
+    }
+
+span.ui-icon-closethick {
+    display: none;
+    }
+
+#searchbox {
+    display: none;
+    right:0px;
+    padding-right: 2em;
+    float:right;
+    text-align: center;
+    }
+

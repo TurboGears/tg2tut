@@ -10,18 +10,14 @@
           py:attrs="dict(content='%s; charset=%s' % (response.content_type, response.charset))" />
     <title py:if="False">Your title goes here</title>
     <meta py:replace="select('*')"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="${tg.url('/css/style.css')}" />
-    <link rel="stylesheet" type="text/css" media="screen" href="${tg.url('/css/admin.css')}" />
 </head>
 
 <body py:match="body" py:attrs="select('@*')">
-  ${header()}
   <div id="content">
     <py:with vars="flash=tg.flash_obj.render('flash', use_js=False)">
         <div py:if="flash" py:content="XML(flash)" />
     </py:with>
     <div py:replace="select('*|text()')"/>
   </div>
-  ${footer()}
 </body>
 </html>
