@@ -1,7 +1,7 @@
 ul.jd_menu_slate {
 	height: 25px;
 	background-color: #DDF;
-	background: url(gradient.png) repeat-x;
+	background: url(/images/gradient.png) repeat-x;
 	border: 1px solid #70777D;
 	border-top: 1px solid #9198A2;
 	border-left: 1px solid #9198A2;
@@ -12,7 +12,7 @@ ul.jd_menu_vertical {
 	width: 200px;
 	height: auto;
 	clear: both;
-	background: url(gradient-vertical.png) repeat-x;
+	background: url(/images/gradient-vertical.png) repeat-x;
 	background-color: #9198A2;
 }
 
@@ -46,7 +46,7 @@ ul.jd_menu_slate li.jd_menu_hover_menubar {
 	border-right: 1px solid #929AA1;
 	border-right: 1px solid #70777D;
 	color: #000;
-	background: url(gradient-alt.png) repeat-x;
+	background: url(/images/gradient-alt.png) repeat-x;
 }
 
 ul.jd_menu_vertical li.jd_menu_active_menubar,
@@ -70,7 +70,7 @@ ul.jd_menu_slate ul li {
 }
 ul.jd_menu_slate ul li.jd_menu_active,
 ul.jd_menu_slate ul li.jd_menu_hover {
-	background: url(gradient.png) repeat-x;
+	background: url(/images/gradient.png) repeat-x;
 	padding-top: 2px;
 	border-top: 1px solid #ABB5BC;
 	padding-bottom: 2px;

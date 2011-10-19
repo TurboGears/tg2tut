@@ -24,8 +24,8 @@ p.dgrey { background-color: #9198a2; }
 
 @font-face {  
   font-family: "BitstreamVeraSerif";  
-  src: url( css/VeraSe.eot ); /* IE */  
-  src: local("Bitstream Vera Serif"), url(css/VeraSe.ttf) format("truetype"); /* non-IE */  
+  src: url( /css/VeraSe.eot ); /* IE */  
+  src: local("Bitstream Vera Serif"), url(/css/VeraSe.ttf) format("truetype"); /* non-IE */  
 }  
  
 body {
