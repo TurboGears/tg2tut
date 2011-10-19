@@ -4,6 +4,7 @@
 from datetime import datetime
 from StringIO import StringIO
 
+from qrencode import Encoder
 from tg import expose, flash, require, url, request, redirect, render
 from tg.i18n import ugettext as _, lazy_ugettext as l_
 from tgext.admin.tgadminconfig import TGAdminConfig
@@ -11,14 +12,12 @@ from repoze.what import predicates
 
 from hiringpond.lib.base import BaseController
 from hiringpond.lib.util import get_user_or_default_user
-from hiringpond.lib import pyqrcode
 from hiringpond.model import DBSession, metadata, User
 from hiringpond import model
 
 from hiringpond.controllers.error import ErrorController
 
 __all__ = ['RootController']
-
 
 class RootController(BaseController):
     """
@@ -59,7 +58,10 @@ class RootController(BaseController):
     @expose(content_type='image/png')
     def vcard(self, uid=None):
         user = get_user_or_default_user(uid)
-        data = pyqrcode.MakeQRImage(render.render({'user':user}, template_engine='vcard', template_name='hiringpond.templates.vcard'))
+        enc = Encoder()
+        vcf = render.render({'user':user}, template_engine='vcard', template_name='hiringpond.templates.vcard')
+        data = enc.encode(vcf, {'ec_level': 3})
+        #data = pyqrcode.MakeQRImage()
         buff = StringIO()
         data.save(buff, 'png')
         img = buff.getvalue()
