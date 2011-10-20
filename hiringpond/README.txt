@@ -26,6 +26,7 @@ Then you are ready to go.
 TODO List
 =========
 
+ * add ability to register new account
  * add login
  * add ability to edit own resume
  * complete tag support
@@ -43,7 +44,6 @@ TODO List
  * add fisherman silhouette as hiring pond logo
  * add generic logo
  * add generic photo / head (shadow) shot
- * add ability to register new account
  * add ability to delete user
  * add ability to suspend/hide user
  * add ability to login using Google, Yahoo, Facebook, etc
