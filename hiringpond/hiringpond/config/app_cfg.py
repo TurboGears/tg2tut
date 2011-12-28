@@ -14,7 +14,7 @@ convert them into boolean, for example, you should use the
 """
 
 from tg.configuration import AppConfig, config
-from tg.render import my_pylons_globals
+#from tg.render import my_pylons_globals
 
 from genshi.template import TemplateLoader, NewTextTemplate
 from pylons import (app_globals, session, tmpl_context, request,
@@ -63,7 +63,7 @@ class RenderVCard(object):
         kwargs['method'] = method
 
         def render_template():
-            template_vars.update(my_pylons_globals())
+            #template_vars.update(my_pylons_globals())
             template = self.load_template(template_name)
             return template.generate(**template_vars).render(encoding=None)
 
