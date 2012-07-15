@@ -153,6 +153,7 @@ class User(DeclarativeBase):
     projects = relationship("ProjectHistory", backref="user", order_by="ProjectHistory.order")
     education = relationship("Education", backref="user", order_by="Education.order")
     awards = relationship("Award", backref="user", order_by="Award.order")
+    resumes = relationship("Resume", backref="user", order_by="Resume.name")
 
     ##{E:Columns}
 

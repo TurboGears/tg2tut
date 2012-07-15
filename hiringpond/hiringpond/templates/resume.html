@@ -50,13 +50,13 @@
       <a name="top"></a>
       <div id="mainphoto">
 	<py:choose test="">
-	  <py:when test="user.photo is not None"><img src="${tg.url('/photo', uid=user.user_id)}" alt="${user.display_name} photo"/></py:when>
+	  <py:when test="user.photo is not None"><img src="${tg.url('/photo', params=dict(uid=user.user_id))}" alt="${user.display_name} photo"/></py:when>
 	  <py:when test="user.photo is None"><!-- todo: generic photo --></py:when>
 	</py:choose>
       </div>
       <div id="logo">
 	<py:choose test="">
-	  <py:when test="user.logo is not None"><img src="${tg.url('/logo', uid=user.user_id)}" alt="${user.display_name} Logo"/></py:when>
+	  <py:when test="user.logo is not None"><img src="${tg.url('/logo', params=dict(uid=user.user_id))}" alt="${user.display_name} Logo"/></py:when>
 	  <py:when test="user.logo is None"><!-- todo: generic logo --></py:when>
 	</py:choose>
       </div>
@@ -100,7 +100,7 @@
 	    </ul>
 	  </li>
 	  <li>Downloadable Resumes</li>
-	  <li><a href="${tg.url('/vcard', uid=user.user_id)}" id="qrcodelink">Downloadable Contact Info</a></li>
+	  <li><a href="${tg.url('/vcard', params=dict(uid=user.user_id))}" id="qrcodelink">Downloadable Contact Info</a></li>
 	</ul>
       </div>
       <div id="maincontentwrapper">
@@ -234,8 +234,8 @@
       <br class="clearboth"/>    
     </div>
     <div id="qrcode">
-      <p>You may download my <a href="${tg.url('/vcf', uid=user.user_id)}">virtual business card</a>. Alternately, the image below is my vcard, embedded as a QRCode. Using Barcode Reader (Android) or Scanlife (iPhone), you can scan it and add me as a contact directly on your phone.</p>
-      <img src="${tg.url('/vcard', uid=user.user_id)}" alt="QR-Code: ${user.display_name}'s VCard"/>
+      <p>You may download my <a href="${tg.url('/vcf', params=dict(uid=user.user_id))}">virtual business card</a>. Alternately, the image below is my vcard, embedded as a QRCode. Using Barcode Reader (Android) or Scanlife (iPhone), you can scan it and add me as a contact directly on your phone.</p>
+      <img src="${tg.url('/vcard', params=dict(uid=user.user_id))}" alt="QR-Code: ${user.display_name}'s VCard"/>
     </div>
     <py:if test="user.analyticsid">
       <script type="text/javascript">

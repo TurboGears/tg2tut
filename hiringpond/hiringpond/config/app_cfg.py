@@ -17,8 +17,8 @@ from tg.configuration import AppConfig, config
 #from tg.render import my_pylons_globals
 
 from genshi.template import TemplateLoader, NewTextTemplate
-from pylons import (app_globals, session, tmpl_context, request,
-                    response, templating)
+from pylons import templating
+from tg import app_globals, session, tmpl_context, request, response
 
 import hiringpond
 from hiringpond import model
@@ -63,7 +63,6 @@ class RenderVCard(object):
         kwargs['method'] = method
 
         def render_template():
-            #template_vars.update(my_pylons_globals())
             template = self.load_template(template_name)
             return template.generate(**template_vars).render(encoding=None)
 
@@ -76,8 +75,6 @@ class HiringPondConfig(AppConfig):
     def setup_vcard_renderer(self):
         loader = VCardTemplateLoader(search_path=self.paths.templates,
                                 auto_reload=self.auto_reload_templates)
-
-        print loader.get_dotted_filename('hiringpond.templates.vcard')
         self.render_functions.vcard = RenderVCard(loader)
 
 

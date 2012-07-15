@@ -64,3 +64,4 @@ from hiringpond.model.skills import SkillGroups, SpecificSkills
 from hiringpond.model.jobs import JobHistory, JobPoints
 from hiringpond.model.projects import ProjectHistory, ProjectPoints
 from hiringpond.model.eduawards import Education, Award
+from hiringpond.model.resume import Resume

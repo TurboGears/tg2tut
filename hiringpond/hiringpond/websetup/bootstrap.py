@@ -185,6 +185,18 @@ def bootstrap(command, conf, vars):
         p1.companyid = j1.id
         p2.companyid = j1.id
         model.DBSession.flush()
+
+        r1 = model.Resume()
+        r1.name="ACME Specialist"
+        r1.includetags='["acme"]'
+        r1.excludetags='[]'
+        r1.includesections='[]'
+        r1.excludesubsections='[]'
+        r1.excludebullets='[]'
+        r1.includebullets='[]'
+        u.resumes.append(r1)
+
+        model.DBSession.flush()
         transaction.commit()
     except IntegrityError:
         print 'Warning, there was a problem adding your auth data, it may have already been added:'
